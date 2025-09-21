@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarocFoot360 - Hébergement Gratuit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c1272d;
+            --secondary-color: #006233;
+            --accent-color: #f4f4f4;
+            --dark-color: #1a1a1a;
+            --light-color: #f8f9fa;
+            --gold-color: #ffd700;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 12px 0;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1599669454699-248893623464?ixlib=rb-4.0.3') no-repeat center center/cover;
+            height: 60vh;
+            min-height: 500px;
+            position: relative;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-left: 20px;
+            margin: 50px 0 30px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--dark-color);
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 8px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+        
+        .card {
+            transition: transform 0.4s, box-shadow 0.4s;
+            margin-bottom: 25px;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hosting-card {
+            border-top: 5px solid var(--primary-color);
+            height: 100%;
+        }
+        
+        .hosting-card.free {
+            border-top-color: #28a745;
+        }
+        
+        .hosting-card.premium {
+            border-top-color: #ffc107;
+        }
+        
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        
+        .price-tag.free {
+            color: #28a745;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(193, 39, 45, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 98, 51, 0.4);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+        
+        .step-card {
+            text-align: center;
+            padding: 30px 20px;
+            height: 100%;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 0 25px;
+            margin-top: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                height: auto;
+                padding: 100px 0;
+            }
+            
+            .price-tag {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="fw-bold" style="font-size: 1.8rem;"><i class="fas fa-futbol me-2"></i>MarocFoot<span style="color: #ffd700;">360</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-home me-1"></i> Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-server me-1"></i> Hébergement</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-question-circle me-1"></i> Aide</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-3 fw-bold mb-4">Hébergement pour MarocFoot360</h1>
+                    <p class="lead mb-4" style="font-size: 1.5rem;">Solutions d'hébergement gratuit pour tester votre site</p>
+                    <a href="#options" class="btn btn-primary btn-lg"><i class="fas fa-server me-2"></i>Voir les Options</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hosting Options -->
+    <section id="options" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Options d'Hébergement Gratuit</h2>
+            <p class="text-center mb-5">Choisissez la solution qui convient le mieux à vos besoins de test</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card hosting-card free">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Github Pages</h3>
+                            <div class="price-tag free">Gratuit</div>
+                            <p class="text-muted">Idéal pour les sites statiques</p>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> Hébergement gratuit illimité</li>
+                                <li><i class="fas fa-check-circle"></i> Nom de domaine personnalisable</li>
+                                <li><i class="fas fa-check-circle"></i> Intégration continue</li>
+                                <li><i class="fas fa-check-circle"></i> SSL gratuit</li>
+                                <li><i class="fas fa-times-circle"></i> Backend limité</li>
+                                <li><i class="fas fa-times-circle"></i> Base de données limitée</li>
+                            </ul>
+                            <a href="https://pages.github.com/" target="_blank" class="btn btn-success mt-3">Choisir cette option</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card hosting-card free">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Netlify</h3>
+                            <div class="price-tag free">Gratuit</div>
+                            <p class="text-muted">Déploiement continu facile</p>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> Déploiement en 1 clic</li>
+                                <li><i class="fas fa-check-circle"></i> Formulaires sans backend</li>
+                                <li><i class="fas fa-check-circle"></i> CDN global</li>
+                                <li><i class="fas fa-check-circle"></i> SSL gratuit</li>
+                                <li><i class="fas fa-check-circle"></i> Fonctions serverless</li>
+                                <li><i class="fas fa-times-circle"></i> Limitations sur le plan gratuit</li>
+                            </ul>
+                            <a href="https://www.netlify.com/" target="_blank" class="btn btn-success mt-3">Choisir cette option</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card hosting-card free">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Vercel</h3>
+                            <div class="price-tag free">Gratuit</div>
+                            <p class="text-muted">Optimisé pour les performances</p>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> Déploiement instantané</li>
+                                <li><i class="fas fa-check-circle"></i> Optimisation automatique</li>
+                                <li><i class="fas fa-check-circle"></i> SSL gratuit</li>
+                                <li><i class="fas fa-check-circle"></i> CDN global</li>
+                                <li><i class="fas fa-check-circle"></i> Functions serverless</li>
+                                <li><i class="fas fa-times-circle"></i> Limitations d'usage</li>
+                            </ul>
+                            <a href="https://vercel.com/" target="_blank" class="btn btn-success mt-3">Choisir cette option</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Comparaison des Options</h2>
+            <p class="text-center mb-5">Tableau comparatif des solutions d'hébergement gratuit</p>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Fonctionnalité</th>
+                            <th>Github Pages</th>
+                            <th>Netlify</th>
+                            <th>Vercel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bandwidth</td>
+                            <td>Illimité</td>
+                            <td>100GB/mois</td>
+                            <td>100GB/mois</td>
+                        </tr>
+                        <tr>
+                            <td>SSL</td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td>CDN</td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Formulaires</td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td>100 submissions/mois</td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Fonctions serverless</td>
+                            <td><i class="fas fa-times text-danger"></i></td>
+                            <td>125K invocations/mois</td>
+                            <td>100GB-hours/mois</td>
+                        </tr>
+                        <tr>
+                            <td>Personnalisation domaine</td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                            <td><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Comment Mettre en Ligne Votre Site</h2>
+            <p class="text-center mb-5">Suivez ces étapes simples pour héberger votre site gratuitement</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card step-card">
+                        <div class="step-number">1</div>
+                        <h4>Créer un compte</h4>
+                        <p>Inscrivez-vous sur la plateforme d'hébergement de votre choix (Github, Netlify ou Vercel)</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card step-card">
+                        <div class="step-number">2</div>
+                        <h4>Préparer vos fichiers</h4>
+                        <p>Rassemblez tous les fichiers HTML, CSS, JS et images de votre site dans un dossier</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card step-card">
+                        <div class="step-number">3</div>
+                        <h4>Déployer</h4>
+                        <p>Suivez les instructions de la plateforme pour uploader vos fichiers et déployer votre site</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary btn-lg"><i class="fas fa-download me-2"></i>Télécharger le code source</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Options -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Options Premium Futures</h2>
+            <p class="text-center mb-5">Quand vous serez prêt à passer à l'échelle supérieure</p>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card hosting-card premium">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Hébergement Mutualisé</h3>
+                            <div class="price-tag">À partir de 5€/mois</div>
+                            <p class="text-muted">Idéal pour les sites avec base de données</p>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> Base de données MySQL</li>
+                                <li><i class="fas fa-check-circle"></i> Emails professionnels</li>
+                                <li><i class="fas fa-check-circle"></i> Support technique</li>
+                                <li><i class="fas fa-check-circle"></i> Sauvegardes automatiques</li>
+                                <li><i class="fas fa-check-circle"></i> SSL inclus</li>
+                                <li><i class="fas fa-check-circle"></i> Nom de domaine gratuit</li>
+                            </ul>
+                            <button class="btn btn-outline-warning mt-3">Option Future</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card hosting-card premium">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Serveur Cloud</h3>
+                            <div class="price-tag">À partir de 10€/mois</div>
+                            <p class="text-muted">Pour une performance et flexibilité maximales</p>
+                            <ul class="feature-list text-start">
+                                <li><i class="fas fa-check-circle"></i> Ressources dédiées</li>
+                                <li><i class="fas fa-check-circle"></i> Scalabilité horizontale</li>
+                                <li><i class="fas fa-check-circle"></i> Contrôle total du serveur</li>
+                                <li><i class="fas fa-check-circle"></i> Haute disponibilité</li>
+                                <li><i class="fas fa-check-circle"></i> Sauvegardes automatiques</li>
+                                <li><i class="fas fa-check-circle"></i> Support 24/7</li>
+                            </ul>
+                            <button class="btn btn-outline-warning mt-3">Option Future</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Questions Fréquentes</h2>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Quel hébergeur gratuit me conseillez-vous pour débuter?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>Netlify est excellent pour commencer</strong> car il offre un bon équilibre entre facilité d'utilisation et fonctionnalités. Son interface de drag-and-drop pour le déploiement est très intuitive pour les débutants.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Puis-je utiliser un nom de domaine personnalisé avec un hébergement gratuit?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            <strong>Oui, la plupart des options gratuites le permettent</strong>. Vous devrez configurer les DNS de votre domaine pour pointer vers votre hébergeur. Netlify et Vercel offrent même SSL gratuit avec les domaines personnalisés.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Quand devrais-je passer à un hébergement payant?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Passez à un hébergement payant quand : <strong>vous avez besoin d'une base de données</strong>, <strong>votre trafic dépasse les limites gratuites</strong>, ou <strong>vous avez besoin de fonctionnalités backend avancées</strong>. Commencez par un hébergement mutualisé puis passez à un VPS ou cloud quand nécessaire.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>MarocFoot360</h5>
+                    <p>Le portail de référence du football marocain et des joueurs marocains à l'étranger.</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Navigation</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Accueil</a></li>
+                        <li><a href="#" class="text-white">Hébergement</a></li>
+                        <li><a href="#" class="text-white">Aide</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i> contact@marocfoot360.ma</li>
+                        <li><i class="fas fa-phone me-2"></i> +212 5 00 00 00 00</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center py-3">
+                <p class="mb-0">&copy; 2023 MarocFoot360 - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
